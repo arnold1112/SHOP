@@ -1,0 +1,48 @@
+{%extends 'base.html'%}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .detail-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            color: #ff5733;
+            font-weight: bold;
+        }
+
+        .btn-buy {
+            background-color: #ff6f61;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-buy:hover {
+            background-color: #e35040;
+        }
+    </style>
+</head>
+<body>
+<div class="row align-items-center">
+    <div class="col-md-6 col-sm-12 mb-3">
+        <img src="{{ laptop.image.url }}" class="img-fluid rounded w-100" alt="{{ laptop.title }}">
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <h2>{{ laptop.title }}</h2>
+        <p class="price-tag">{{ laptop.price }} so'm</p>
+        <p>{{ laptop.description }}</p>
+        <a href="{% url 'cart' laptop.id %}" class="btn btn-buy mt-3">💼 Buyurtma berish</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Laptop Do'koni</title>
+    <!-- Bootstrap 5 CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Maxsus CSS -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+  <div class="container">
+    <a class="navbar-brand" href="/">Noutbuklar.uz</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Bosh sahifa</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Biz haqimizda</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Aloqa</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Kategoriya tugmalari -->
+<div class="container text-center mb-4">
+  <a href="{% url 'home' %}" class="btn btn-outline-dark mx-1 {% if not request.GET.category %}active{% endif %}">Barchasi</a>
+  {% for cat in categories %}
+      <a href="?category={{ cat.id }}" class="btn btn-outline-dark mx-1 {% if request.GET.category == cat.id|stringformat:"s" %}active{% endif %}">
+          {{ cat.name }}
+      </a>
+  {% endfor %}
+</div>
+
+{% block content %}
+
+{% endblock %}
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
